@@ -28,7 +28,7 @@
 
 - pip install kafka_python-1.3.4-py2.py3-none-any.whl
 
-
+- spark-submit --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0 sample3.py
 
 ## HBase 投影片與範例
 
