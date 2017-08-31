@@ -1,4 +1,3 @@
-
 import sys
 
 from pyspark import SparkContext
@@ -7,6 +6,7 @@ from pyspark.streaming import StreamingContext
 if __name__ == "__main__":
 
     sc = SparkContext(appName="StreamingErrorCount")
+    sc.setLogLevel("ERROR")
     ssc = StreamingContext(sc, 1)
     
     ssc.checkpoint("hdfs:///user/hdp/streaming")
