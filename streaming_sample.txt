@@ -1,0 +1,20 @@
+## Input Text
+a b c ERROR
+ERROR d e
+f
+
+## flatmap
+[a,b,c,ERROR]
+[ERROR, d, e]
+[f]
+
+[a    ,   b  ,    c ,ERROR,ERROR,   d  ,  e   ,  f]
+
+## filter
+[False, False, False, True, True, False, False, False]
+
+## map
+[(ERROR,1), (ERROR,1)]
+
+## reducebykey
+(ERROR, 2)
