@@ -28,8 +28,12 @@
 
 - pip install kafka_python-1.3.4-py2.py3-none-any.whl
 
-- spark-submit --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0 sample3.py
 
+- 使用kafka & Spark Streaming
+- spark-submit --driver-java-options "-Dhttp.proxyHost=10.160.3.88 -Dhttp.proxyPort=8080 -Dhttps.proxyHost=10.160.3.88 -Dhttps.proxyPort=8080" --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0 consumeFromKafka.py
+
+sh /usr/hdp/2.4.0.0-169/kafka/bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic queue_test
+spark-submit --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0 consumeFromKafka,py
 ## HBase 投影片與範例
 
 
