@@ -38,7 +38,10 @@
 ## 安裝 HappyBase
 -  export http_proxy=http://10.160.3.88:8080
 -  export https_proxy=http://10.160.3.88:8080
-- pip install happybase
+- pip uninstall thrift
+- pip install thrift==0.9.3
+- pip uninstall happybase
+- pip install happybase==0.9
 ## HBase 投影片與範例
 
 
