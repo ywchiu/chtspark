@@ -35,6 +35,10 @@
 - spark-submit --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0 consumeFromKafka.py
 
 
+## 安裝 HappyBase
+-  export http_proxy=http://10.160.3.88:8080
+-  export https_proxy=http://10.160.3.88:8080
+- pip install happybase
 ## HBase 投影片與範例
 
 
