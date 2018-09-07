@@ -1,32 +1,35 @@
-# ¦w¸Ë³æ¾÷ª©¨BÆJ
-## ¤U¸üSpark 2.1.1
-- wget https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
+# å®‰è£å–®æ©Ÿç‰ˆæ­¥é©Ÿ
+## ä¸‹è¼‰Spark 2.3.1
+- wget http://apache.stu.edu.tw/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz
 
-## ¸ÑÀ£ÁYÀÉ®×
-- tar -zxvf spark-2.1.1-bin-hadoop2.7.tgz
+## è§£å£“ç¸®æª”æ¡ˆ
+- tar -zxvf spark-2.3.1-bin-hadoop2.7.tgz
 
-## ±NÀÉ®×©ñ¸m¦Ü/usr/local/spark ¤¤
-- sudo mv spark-2.1.1-bin-hadoop2.7 /usr/local/spark
+## å®‰è£ JAVA
+- sudo apt install default-jdk
 
-## ³]©wÀô¹ÒÅÜ¼Æ
+## å°‡æª”æ¡ˆæ”¾ç½®è‡³/usr/local/spark ä¸­
+- sudo mv spark-2.3.1-bin-hadoop2.7 /usr/local/spark
+
+## è¨­å®šç’°å¢ƒè®Šæ•¸
 - sudo vi /etc/profile
 ```
 export SPARK_HOME=/usr/local/spark
 export PATH=$PATH:$SPARK_HOME/bin
 ```
 
-## ÅıÀô¹ÒÅÜ¼Æ¥Í®Ä
+## è®“ç’°å¢ƒè®Šæ•¸ç”Ÿæ•ˆ
 - source /etc/profile
 
 
-# ¦w¸ËCluster¨BÆJ
+# å®‰è£Clusteræ­¥é©Ÿ
 
-## ³]©w spark-env
+## è¨­å®š spark-env
 - cd /usr/local/spark/conf
 - cp spark-env.sh.template spark-env.sh
 - cp slaves.template slaves
 
-## ­×§ï slaves ¸ò spark-env
+## ä¿®æ”¹ slaves è·Ÿ spark-env
 - vi slaves
 ```
 data1
@@ -44,62 +47,63 @@ export SPARK_WORKER_INSTANCES=2
 
 
 
-## ­×§ï/etc/ssh/sshd_config
+## ä¿®æ”¹/etc/ssh/sshd_config
 - sudo vi /etc/ssh/sshd_config
 ```
 PasswordAuthentication no
 PermitEmptyPasswords yes
 ```
 
-## ÅıÅv­­­×§ï¥Í®Ä
+## è®“æ¬Šé™ä¿®æ”¹ç”Ÿæ•ˆ
 - sudo service sshd restart
 
-## ³]©wµLª÷Æ_µn¤J
-- ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
-- cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+## è¨­å®šç„¡é‡‘é‘°ç™»å…¥
+- ssh-keygen -t rsa 
+- æŒ‰ç©ºç™½
+- cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 - chmod 700 ~/.ssh
 - chmod 600 ~/.ssh/authorized_keys
 
-## ÀË¬d¬O§_¯àµn¤J
+## æª¢æŸ¥æ˜¯å¦èƒ½ç™»å…¥
 - ssh localhost
 
-## ±NMaster °µCopy
+## å°‡Master åšCopy
 
-## ÀË¬d IP
+## æª¢æŸ¥ IP
 - ifconfig 
 
-## ¥Ã¤[¥Í®Ä
+## æ°¸ä¹…ç”Ÿæ•ˆ
 - vi /etc/hostname
-- ¸ò¾Ú¥D¾÷Hostname ¥´¤J¦WºÙ
+- è·Ÿæ“šä¸»æ©ŸHostname æ‰“å…¥åç¨±
 ```
 master
 ```
 
-## ­×§ïHostname (¥ß§Y¦ı¼È®É¥Í®Ä)
-- ¦bmaster ¤U: sudo hostname master 
-- ¦bdata1  ¤U: sudo hostname data1
-- ¦bdata2  ¤U: sudo hostname data2 
-- ¦bdata3  ¤U: sudo hostname data3
+## ä¿®æ”¹Hostname (ç«‹å³ä½†æš«æ™‚ç”Ÿæ•ˆ)
+- åœ¨master ä¸‹: sudo hostname master 
+- åœ¨data1  ä¸‹: sudo hostname data1
+- åœ¨data2  ä¸‹: sudo hostname data2 
+- åœ¨data3  ä¸‹: sudo hostname data3
 
-## ½s¿è hosts
-- vi /etc/hosts
+## ç·¨è¼¯ hosts
+- sudo vi /etc/hosts
 ```
-    192.168.233.155 master
-	192.168.233.156 data1
-	192.168.233.157 data2
-	192.168.233.158 data3
+10.140.0.5 master
+10.140.0.6 data1
+10.140.0.7 data2
+10.140.0.10 data3
 ```
 
-## Ãö³¬¨¾¤õÀğ
+## é—œé–‰é˜²ç«ç‰†
 - sudo chkconfig iptables off
 - sudo service iptables stop
 
-## ±Ò°Ê©Ò¦³Cluster
+## å•Ÿå‹•æ‰€æœ‰Cluster
 - /usr/local/spark/sbin/start-all.sh
 
-## Ãö³¬©Ò¦³Cluster
+## é—œé–‰æ‰€æœ‰Cluster
 - /usr/local/spark/sbin/stop-all.sh
 
-## ÀËµø¬O§_±Ò¥Î
+## æª¢è¦–æ˜¯å¦å•Ÿç”¨
 - master:8080
 
