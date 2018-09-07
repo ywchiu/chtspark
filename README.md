@@ -75,3 +75,7 @@
 - https://youtu.be/RoRixPm4XyQ
 
 - https://www.youtube.com/watch?v=l0TemN7lpCs
+
+
+## 安裝過程影片
+- https://youtu.be/ND1oWL0zkgw
