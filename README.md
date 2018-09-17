@@ -55,6 +55,9 @@
 - https://github.com/ywchiu/micronbigdata/blob/master/Slides/20161201%20%E5%B7%A8%E9%87%8F%E8%B3%87%E6%96%99%E5%AF%A6%E6%88%B0%E8%AA%B2%E7%A8%8B(I)%20%E2%80%93%20Hive%20Batch%20%E8%88%87Spark%20Streaming%20%E7%B0%A1%E4%BB%8B.pdf
 
 
+## 監控系統使用量
+
+
 
 ## Kafka 與 HBase 簡介
 
@@ -79,3 +82,15 @@
 
 ## 安裝過程影片
 - https://youtu.be/ND1oWL0zkgw
+
+
+## 監控系統資源
+
+### 建立 Topic
+- /usr/hdp/2.4.0.0-169/kafka/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 1 --topic sysyem_monitor
+
+### 執行 Producer
+- python monitor_producer.py
+
+### 執行 Spark Streaming 將 kafka 的資料導入到 HBase 中
+- spark-submit --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0 SaveMonitor.py
