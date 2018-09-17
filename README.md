@@ -30,7 +30,7 @@
 
 
 ## 使用kafka & Spark Streaming Step1
-- spark-submit --driver-java-options "-Dhttp.proxyHost=10.160.3.88 -Dhttp.proxyPort=8080 -Dhttps.proxyHost=10.160.3.88 -Dhttps.proxyPort=8080" --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0 consumeFromKafka.py
+- spark-submit --conf "spark.driver.extraJavaOptions=-Dhttps.proxyHost=10.160.3.88 -Dhttps.proxyPort=8080 -Dhttps.protocols=TLSv1.2"  --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0 consumeFromKafka.py
 
 - spark-submit --packages org.apache.spark:spark-streaming-kafka_2.10:1.5.0 consumeFromKafka.py
 
