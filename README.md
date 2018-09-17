@@ -86,6 +86,9 @@
 
 ## 監控系統資源
 
+### 安裝 psutil
+- pip install psutil
+
 ### 建立 Topic
 - /usr/hdp/2.4.0.0-169/kafka/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 1 --topic sysyem_monitor
 
