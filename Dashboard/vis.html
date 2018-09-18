@@ -1,0 +1,130 @@
+
+<html>
+<head>
+<script src="//www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="//www.amcharts.com/lib/3/serial.js"></script>
+<script src="//www.amcharts.com/lib/3/themes/light.js"></script>
+
+<style>
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+
+#chartdiv {
+	width: 100%;
+	height: 100%;
+}
+
+</style>
+</head>
+
+
+<body>
+<div id="chartdiv"></div>
+
+
+
+
+<script>
+/**
+ * Init some variables for demo purposes
+ */
+var day = 0;
+var firstDate = new Date();
+firstDate.setDate( firstDate.getDate() - 500 );
+
+/**
+ * Function that generates random data
+ */
+function generateChartData() {
+  var chartData = [];
+  for ( day = 0; day < 50; day++ ) {
+    var newDate = new Date( firstDate );
+    newDate.setDate( newDate.getDate() + day );
+
+    var visits = Math.round( Math.random() * 40 ) - 20;
+
+    chartData.push( {
+      "date": newDate,
+      "visits": visits
+    } );
+  }
+
+  return chartData;
+}
+
+/**
+ * Create the chart
+ */
+var chart = AmCharts.makeChart( "chartdiv", {
+  "type": "serial",
+  "theme": "light",
+  "zoomOutButton": {
+    "backgroundColor": '#000000',
+    "backgroundAlpha": 0.15
+  },
+  "dataProvider": generateChartData(),
+  "categoryField": "date",
+  "categoryAxis": {
+    "parseDates": true,
+    "minPeriod": "DD",
+    "dashLength": 1,
+    "gridAlpha": 0.15,
+    "axisColor": "#DADADA"
+  },
+  "graphs": [ {
+    "id": "g1",
+    "valueField": "visits",
+    "bullet": "round",
+    "bulletBorderColor": "#FFFFFF",
+    "bulletBorderThickness": 2,
+    "lineThickness": 2,
+    "lineColor": "#b5030d",
+    "negativeLineColor": "#0352b5",
+    "hideBulletsCount": 50
+  } ],
+  "chartCursor": {
+    "cursorPosition": "mouse"
+  },
+  "chartScrollbar": {
+    "graph": "g1",
+    "scrollbarHeight": 40,
+    "color": "#FFFFFF",
+    "autoGridCount": true
+  }
+} )
+
+/**
+ * Set interval to push new data points periodically
+ */
+// set up the chart to update every second
+setInterval( function() {
+  // normally you would load new datapoints here,
+  // but we will just generate some random values
+  // and remove the value from the beginning so that
+  // we get nice sliding graph feeling
+
+  // remove datapoint from the beginning
+  chart.dataProvider.shift();
+
+  // add new one at the end
+  day++;
+  var newDate = new Date( firstDate );
+  newDate.setDate( newDate.getDate() + day );
+  var visits = Math.round( Math.random() * 40 ) - 20;
+  chart.dataProvider.push( {
+    date: newDate,
+    visits: visits
+  } );
+  chart.validateData();
+}, 1000 );
+
+
+</script>
+
+
+</body>
+
+</html>
